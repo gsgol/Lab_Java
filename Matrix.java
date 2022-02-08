@@ -42,16 +42,7 @@ public class Matrix
 
     Matrix(int rows_count, int columns_count)
     {
-        this.rows = rows_count;
-        this.columns = columns_count;
-        this.data = new Complex[rows_count][columns_count];
-        for(int i = 0; i < rows_count; ++i)
-        {
-            for(int j = 0; j < columns_count; ++j)
-            {
-                this.data[i][j] = new Complex();
-            }
-        }
+        this(rows_count, columns_count, new Complex(1,1));
     }
 
 
@@ -144,7 +135,7 @@ public class Matrix
         }
     }
 
-    public Matrix transpose()
+    public Matrix Transpose()
     {
         Matrix temp = new Matrix(this.columns, this.rows);
         for(int i = 0; i < this.rows; ++i)
@@ -156,7 +147,7 @@ public class Matrix
         return temp;
     }
 
-    public Complex[][] gensubarr(Complex[][] a, int b, int c)
+    public Complex[][] GenSubArr(Complex[][] a, int b, int c)
     {
         Complex[][] subarr = new Complex[b - 1][b - 1];
         for(int i = 1; i < b; ++i)
@@ -176,7 +167,7 @@ public class Matrix
         return subarr;
     }
 
-    public Complex determinant(Complex[][] a, int n)
+    public Complex Determinant(Complex[][] a, int n)
     {
         Complex ans = new Complex(0,0);
         if (n == 1)
@@ -192,9 +183,9 @@ public class Matrix
         {
             for(int i = 0; i < n; ++i)
             {
-                Complex[][] temp = gensubarr(a, n, i);
+                Complex[][] temp = GenSubArr(a, n, i);
                 Complex t = new Complex(Math.pow(-1.0, i + 2.0), 0);
-                ans = ans.add(t.mul(a[0][i].mul(determinant(temp, n-1))));
+                ans = ans.add(t.mul(a[0][i].mul(Determinant(temp, n-1))));
             }
 
         }
@@ -203,7 +194,7 @@ public class Matrix
 
     }
 
-    public void print()
+    public void Print()
     {
         for(int i = 0; i < this.rows; ++i)
         {
