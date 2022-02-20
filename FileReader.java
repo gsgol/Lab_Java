@@ -5,13 +5,15 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class FileReader {
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         int size;
         String filename_input;
         String filename_output;
         Scanner sc = new Scanner(System.in);
         boolean flag = true;
-        while(flag) {
+        while(flag) 
+        {
             try {
                 System.out.println("Введите имя файла для чтения");
                 filename_input = sc.next();
