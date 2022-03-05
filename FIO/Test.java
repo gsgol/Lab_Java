@@ -19,14 +19,14 @@ public class Test
                 System.out.println("Введите фамилию");
                 String surname = sc.next("[а-яА-Я]+");
                 System.out.println("Введите отчество");
-                String patronym = sc.next("[а-яА-Я]+");
+                String patronymic = sc.next("[а-яА-Я]+");
                 System.out.println("Введите год рождеия");
                 int year = sc.nextInt();
                 System.out.println("Введите день рождения");
                 int day = sc.nextInt();
                 System.out.println("Введите месяц рождения");
                 int month = sc.nextInt();
-                Student stud = new Student(name,surname,patronym,LocalDate.of(year,month,day));
+                Student stud = new Student(name,surname,patronymic,LocalDate.of(year,month,day));
                 stud.Describe();
                 flag = false;
             } catch (InputMismatchException | DateTimeException | PatternSyntaxException ex) {
