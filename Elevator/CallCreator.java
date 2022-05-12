@@ -9,7 +9,7 @@ public class CallCreator implements Runnable
     private final long duration;
     private final long startTime;
 
-    CallCreator(ConcurrentLinkedQueue<Call> queue, int floorNum, long duration)
+    public CallCreator(ConcurrentLinkedQueue<Call> queue, int floorNum, long duration)
     {
         this.queue = queue;
         this.floorNum = floorNum;
