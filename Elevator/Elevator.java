@@ -10,7 +10,7 @@ public class Elevator
     private int passengerNumber = 0;
     private final ArrayList<Call> tasks;
 
-    Elevator(int num, int capacity)
+    public Elevator(int num, int capacity)
     {
         this.num = num;
         this.tasks = new ArrayList();
@@ -39,9 +39,9 @@ public class Elevator
 
     public void addCall(Call call)
     {
-        PrintStream var10000 = System.out;
-        int var10001 = call.getNum();
-        var10000.println("Call " + var10001 + " assigned to elevator " + this.num);
+
+        int callNum = call.getNum();
+        System.out.println("Call " + callNum + " assigned to elevator " + this.num);
         if (this.currentFloor < this.destFloor)
         {
             if (call.getTo() > this.destFloor)
@@ -67,11 +67,11 @@ public class Elevator
     private void chooseFar()
     {
         int diff = 0;
-        Iterator var2 = this.tasks.iterator();
+        Iterator it2 = this.tasks.iterator();
 
-        while(var2.hasNext())
+        while(it2.hasNext())
         {
-            Call call = (Call)var2.next();
+            Call call = (Call)it2.next();
             if (Math.abs(this.currentFloor - call.getTo()) > diff)
             {
                 diff = Math.abs(this.currentFloor - call.getTo());
@@ -85,23 +85,21 @@ public class Elevator
     {
         for(int i = 0; i < this.tasks.size(); ++i)
         {
-            PrintStream var10000;
-            int var10001;
+
+            int callFrom;
             if (((Call)this.tasks.get(i)).getFrom() == this.currentFloor && !((Call)this.tasks.get(i)).isTaken() && this.passengerNumber < this.capacity)
             {
                 ++this.passengerNumber;
                 this.tasks.set(i, ((Call)this.tasks.get(i)).take());
-                var10000 = System.out;
-                var10001 = ((Call)this.tasks.get(i)).getFrom();
-                var10000.println("Passenger taken on floor " + var10001 + " by elevator " + this.num + " | call " + ((Call)this.tasks.get(i)).getNum());
+                callFrom = ((Call)this.tasks.get(i)).getFrom();
+                System.out.println("Passenger taken on floor " + callFrom + " by elevator " + this.num + " | call " + ((Call)this.tasks.get(i)).getNum());
             }
 
             if (((Call)this.tasks.get(i)).getTo() == this.currentFloor && ((Call)this.tasks.get(i)).isTaken())
             {
                 --this.passengerNumber;
-                var10000 = System.out;
-                var10001 = ((Call)this.tasks.get(i)).getTo();
-                var10000.println("Passenger delivered to floor " + var10001 + " by elevator " + this.num + " | call " + ((Call)this.tasks.get(i)).getNum());
+                callFrom = ((Call)this.tasks.get(i)).getTo();
+                System.out.println("Passenger delivered to floor " + callFrom + " by elevator " + this.num + " | call " + ((Call)this.tasks.get(i)).getNum());
                 this.tasks.remove(i);
             }
         }
