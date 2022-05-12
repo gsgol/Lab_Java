@@ -4,11 +4,11 @@ public class ElevatorManager implements Runnable
 {
     private final ConcurrentLinkedQueue<Call> queue;
     private int tick;
-    private final long duration;
+    private  final long duration;
     private final long startTime;
     private final Elevator[] elevators;
 
-    ElevatorManager(ConcurrentLinkedQueue<Call> queue, int elevatorsNum, long liveTime)
+    public ElevatorManager(ConcurrentLinkedQueue<Call> queue, int elevatorsNum, long liveTime)
     {
         this.queue = queue;
         this.duration = liveTime;
@@ -82,17 +82,16 @@ public class ElevatorManager implements Runnable
                     this.elevators[this.chooseElevator(this.elevators, call)].addCall(call);
                 }
 
-                Elevator[] var7 = this.elevators;
-                int var3 = var7.length;
+                Elevator[] elev = this.elevators;
 
-                for(int var4 = 0; var4 < var3; ++var4)
+                for(int i = 0; i < elev.length; ++i)
                 {
-                    Elevator elevator = var7[var4];
+                    Elevator elevator = elev[i];
                     elevator.tick();
                     stillProcessing += 5;
                 }
             }
-            catch (InterruptedException var6)
+            catch (InterruptedException e1)
             {
             }
         }
